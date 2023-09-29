@@ -1,0 +1,70 @@
+module testbench_fifo;
+
+  // Parameters
+  reg clk;
+  reg rst;
+  reg [7:0] buf_in;
+  reg wr_en;
+  reg rd_en;
+  wire [7:0] buf_out;
+  wire buf_empty;
+  wire buf_full;
+  wire [7:0] fifo_counter;
+
+  // Instantiate the FIFO module
+  FIFO my_fifo (
+    .clk(clk),
+    .rst(rst),
+    .buf_in(buf_in),
+    .wr_en(wr_en),
+    .rd_en(rd_en),
+    .buf_out(buf_out),
+    .buf_empty(buf_empty),
+    .buf_full(buf_full),
+    .fifo_counter(fifo_counter)
+  );
+
+  // Clock generation
+  always begin
+    #5 clk = ~clk; // Toggle the clock every 5 time units
+  end
+
+  // Test scenario
+  initial begin
+    clk = 0;
+    rst = 1; // Reset initially
+    buf_in = 8'h00;
+    wr_en = 0;
+    rd_en = 0;
+
+    // Apply reset
+    #10 rst = 0;
+
+    // Perform write operations
+    #20 wr_en = 1;
+    #5 buf_in = 8'h0A;
+    #5 buf_in = 8'h0B;
+    #5 buf_in = 8'h0C;
+    wr_en = 0;
+
+    // Perform read operations
+    #20 rd_en = 1;
+    #5 rd_en = 0;
+
+    // Add more test scenarios here as needed
+
+    // End simulation
+    $finish;
+  end
+
+  // Display simulation results
+  always @(posedge clk) begin
+    $display("Time=%0t, buf_out=%h, buf_empty=%b, buf_full=%b, fifo_counter=%h", $time, buf_out, buf_empty, buf_full, fifo_counter);
+  end
+  
+   initial begin
+      $dumpfile("dump.vcd");
+      $dumpvars;
+    end
+
+endmodule
