@@ -1,5 +1,5 @@
 # Define the Verilog module 'fifo'
-define_module -rtl -language Verilog -module fifo -ports {
+define_module -module fifo -ports {
     clk { clk input }
     rst { rst input }
     buf_in { buf_in input [7:0] }
@@ -12,13 +12,14 @@ define_module -rtl -language Verilog -module fifo -ports {
 }
 
 # Declare internal registers and wires
-add_register -rtl -reset 0 -bits 8 fifo_counter_next
-add_register -rtl -reset 0 -bits 8 wr_ptr
-add_register -rtl -reset 0 -bits 8 rd_ptr
-add_register -rtl -reset 0 -bits 8 -array 64 buf_mem
+add_register  -reset 0 -bits 8 fifo_counter_next
+add_register  -reset 0 -bits 8 wr_ptr
+add_register  -reset 0 -bits 8 rd_ptr
+add_register  -reset 0 -bits 8 -array 64 buf_mem
 
 # Define the always block
-create_process -name fifo_logic -type VHDL -inputs { clk rst wr_en rd_en buf_in } -outputs { buf_out buf_empty buf_full fifo_counter } -wait_for buf_mem -sensitivity { clk rising_edge } {
+create_process -name fifo_logic -type VHDL -inputs { clk rst wr_en rd_en buf_in } 
+-outputs { buf_out buf_empty buf_full fifo_counter } -wait_for buf_mem -sensitivity { clk rising_edge } {
     if { rst } {
         set fifo_counter 8'b0
         set wr_ptr 8'b0
