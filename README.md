@@ -1,5 +1,5 @@
 # FIFO
-The "FIFO Basic Operation" test case is designed to verify the fundamental functionality of a FIFO (First-In-First-Out) memory. The test steps cover initialization, data writing, verification of data writing order, data reading, verification of data reading order, and testing boundary conditions such as overflow and underflow scenarios.
+The "FIFO Basic Operation" test case is designed to verify the fundamental functionality of a FIFO (First-In-First-Out) memory. The test steps cover initialization, data writing, verification of data writing order, data reading, verification of data reading order, and testing boundary conditions such as overflow and underflow scenarios and RTL to GDSII flow.
 
 # DEFINITION
 A FIFO (First-In-First-Out) is a data structure used in digital circuits and systems to store and retrieve data in a specific order: the first data item to enter the FIFO is the first one to exit. It's like a queue in a real-world scenario where people wait in a line, and the person who arrives first is served first. In a digital context, a FIFO is particularly useful for buffering data between two parts of a system with different data rates or processing speeds.
