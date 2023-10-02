@@ -1,4 +1,4 @@
-module FIFO(
+module fifo(
   input clk,
   input rst,
   input [7:0] buf_in,
