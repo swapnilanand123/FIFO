@@ -39,3 +39,42 @@ Here's a simplified waveform diagram of a FIFO operation:
 - If more data is written than read, the FIFO can become full (`FULL` = 1), and further write operations might be blocked until some data is read out.
 
 In real-world applications, FIFOs can have different sizes, more complex control logic, and additional features like programmable flags, almost-empty and almost-full thresholds, and more, depending on the specific requirements of the design.
+
+
+RTL to GDSII flow: -
+
+![Screenshot from 2023-10-02 10-53-50](https://github.com/swapnilanand123/FIFO/assets/143795450/79c2483d-5dac-4e8f-96aa-c76e2229a4a6)
+
+![Screenshot from 2023-10-02 10-54-00](https://github.com/swapnilanand123/FIFO/assets/143795450/62a13c37-a7e8-4834-99d8-28297ece134c)
+
+```
+~/OPENROAD_FLOW/OpenROAD-flow-scripts/flow/designs/sky130hd/fifo$ gedit config.mk 
+```
+![Screenshot from 2023-10-02 10-43-38](https://github.com/swapnilanand123/FIFO/assets/143795450/574f70fc-9bbe-4f28-b78d-d511e0d9d2e9)
+
+```
+~/OPENROAD_FLOW/OpenROAD-flow-scripts/flow/designs/sky130hd/fifo$ gedit constraint.sdc
+```
+![Screenshot from 2023-10-02 10-43-04](https://github.com/swapnilanand123/FIFO/assets/143795450/48d5c8bb-2684-4de8-b2bb-1aa236ada565)
+
+```
+OPENROAD_FLOW$ source ORFS_bashrc
+OPENROAD_FLOW/OpenROAD-flow-scripts/flow$ make DESIGN_CONFIG=./designs/sky130hd/fifo/config.mk
+```
+![Screenshot from 2023-10-02 10-54-34](https://github.com/swapnilanand123/FIFO/assets/143795450/247c8f41-6d98-4ffc-9262-0ad7d9283318)
+![Screenshot from 2023-10-02 10-55-27](https://github.com/swapnilanand123/FIFO/assets/143795450/20d32183-c0f6-479f-ae40-b466dbffbddc)
+
+
+```
+OPENROAD_FLOW/OpenROAD-flow-scripts/flow$ make DESIGN_CONFIG=./designs/sky130hd/fifo/config.mk gui_final
+```
+![Screenshot from 2023-10-02 10-56-57](https://github.com/swapnilanand123/FIFO/assets/143795450/949d5b84-fa63-4b38-95c7-3d2763fe0e64)
+
+
+```
+OPENROAD_FLOW/OpenROAD-flow-scripts/flow$ klayout -s ./results/sky130hd/fifo/base/6_final.gds -l ./platforms/sky130hd/sky130hd.lyp
+```
+![Screenshot from 2023-10-02 11-00-14](https://github.com/swapnilanand123/FIFO/assets/143795450/051bbe31-52c9-4876-a998-e879b9156dd3)
+
+
+
