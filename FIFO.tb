@@ -51,7 +51,7 @@ module testbench_fifo;
     #20 rd_en = 1;
     #5 rd_en = 0;
 
-    // Add more test scenarios here as needed
+    // Add more test scenarios if needed
 
     // End simulation
     $finish;
