@@ -42,8 +42,8 @@ class generator;
   
    int count = 0;
   
-   event next;  ///know when to send next transaction
-   event done;  ////conveys completion of requested no. of transaction
+   event next;  ///when to send next transaction
+   event done;  ////completion of requested no. of transaction
    
    
   function new(mailbox #(transaction) mbx);
